@@ -1,3 +1,5 @@
+# reader, open pdf read and copy text
+
 from pypdf import PdfReader 
 import io
 

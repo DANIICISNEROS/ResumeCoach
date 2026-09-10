@@ -1,3 +1,5 @@
+# boss, join everything together
+
 from fastapi import FastAPI, UploadFile, File
 from pdf_reader import extract_text_from_pdf
 

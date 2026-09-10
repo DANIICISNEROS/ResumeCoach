@@ -1,0 +1,1 @@
+# send text to IA with instructions
