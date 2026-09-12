@@ -1,30 +1,35 @@
-import time
-import pathlib
+# IA work, functions with instructions to Gemini API
+
 import google.generativeai as genai
-from dotenv import load_dotenv
 import os
+import time
+from dotenv import load_dotenv
 
 load_dotenv()
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 model = genai.GenerativeModel('gemini-3.5-flash-lite')
 
-def analyze_resume_from_path(pdf_path: str):
-    pdf_bytes = pathlib.Path(pdf_path).read_bytes()
-    prompt = "Eres reclutador tech. Analiza este CV en PDF: score 0-100, 3 fortalezas, 3 debilidades, 3 mejoras."
-    
-    for i in range(3): # intenta 3 veces
+def analyze_resume(text: str):
+    prompt = f"""
+    Eres un reclutador tech experto. Analiza este CV:
+    ---
+    {text[:8000]}
+    ---
+    Dame en formato JSON:
+    1. score (0-100)
+    2. fortalezas (3 bullets)
+    3. debilidades (3 bullets)
+    4. mejoras_concretas (3 bullets)
+    """
+
+    for i in range(3):
         try:
-            response = model.generate_content([
-                prompt,
-                {"mime_type": "application/pdf", "data": pdf_bytes}
-            ])
+            response = model.generate_content(prompt)
             return response.text
         except Exception as e:
             if "429" in str(e):
-                print(f"Cuota llena, esperando 12s... intento {i+1}/3")
                 time.sleep(12)
             else:
-                raise e
-
-if __name__ == "__main__":
-    print(analyze_resume_from_path("testFiles/CV-HOS.pdf"))
+                return f"Error: {str(e)}"
+    
+    return "Error: Cuota excedida, espera 1 min"
