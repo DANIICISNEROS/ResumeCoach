@@ -1,5 +1,19 @@
-__pycache__/
+# python
+IA/__pycache__/
 enviromentResumeCoach/
 *.pyc
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.next/
+node_modules/
+.next/
+next-env.d.ts
+
+# env
 .env
+
+# testing files
 testFiles/
