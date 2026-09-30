@@ -9,13 +9,17 @@ export default function Home() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleAnalyze = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setResult({ test: "ok - html funciona" } as any);
-      setLoading(false);
-    }, 500);
-  };
+  const handleAnalyze = async () => {
+  if (!file) return alert("Subí tu CV");
+  setLoading(true);
+  const fd = new FormData();
+  fd.append("file", file);
+  
+  const res = await fetch("/analyzer", { method: "POST", body: fd });
+  const data = await res.json();
+  setResult(data);
+  setLoading(false);
+}
 
   return (
     <main className="min-h-screen bg-black text-white p-6 flex justify-center">
