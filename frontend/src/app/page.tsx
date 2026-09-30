@@ -8,6 +8,7 @@ export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleAnalyze = async () => {
   if (!file) return alert("Subí tu CV");

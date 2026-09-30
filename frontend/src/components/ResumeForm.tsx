@@ -16,7 +16,7 @@ export default function ResumeForm({ jobDesc, setJobDesc, file, setFile, onAnaly
       <label className="border-2 border-dashed border-zinc-700 rounded-xl h-40 flex flex-col items-center justify-center cursor-pointer hover:border-zinc-500 transition">
         <input type="file" className="hidden" accept=".pdf,.docx" onChange={(e) => setFile(e.target.files?.[0] || null)} />
         <span className="text-3xl">📄</span>
-        <span className="text-sm text-zinc-400 mt-2">{file? file.name : "Arrastrá tu PDF o DOCX"}</span>
+        <span className="text-sm text-zinc-400 mt-2">{file ? file.name : "Arrastrá tu PDF o DOCX"}</span>
       </label>
 
       <h2 className="font-semibold mt-8 mb-4">2. Descripción del trabajo</h2>
@@ -30,9 +30,9 @@ export default function ResumeForm({ jobDesc, setJobDesc, file, setFile, onAnaly
       <button
         onClick={onAnalyze}
         disabled={loading}
-        className="w-full mt-6 bg-white text-black font-bold py-3 rounded-xl hover:bg-zinc-200 disabled:opacity-50"
+        className="w-full mt-6 bg-white text-black font-bold py-3 rounded-xl transition-all delay-150 duration-300 ease-in-out hover:bg-zinc-200 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
       >
-        {loading? "Analizando..." : "Analizar CV →"}
+        {loading ? "Analizando..." : "Analizar CV →"}
       </button>
     </div>
   );
