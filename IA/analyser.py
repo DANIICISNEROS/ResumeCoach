@@ -11,15 +11,15 @@ model = genai.GenerativeModel('gemini-3.5-flash-lite')
 
 def analyze_resume(text: str):
     prompt = f"""
-    Eres un reclutador tech experto. Analiza este CV:
+    you are a tech recruiter expert. Analyze this CV:
     ---
     {text[:8000]}
     ---
-    Dame en formato JSON:
+    Provide the analysis in JSON format, Respond ONLY with valid JSON. Do NOT wrap it in ```json:
     1. score (0-100)
-    2. fortalezas (3 bullets)
-    3. debilidades (3 bullets)
-    4. mejoras_concretas (3 bullets)
+    2. strengths (3 bullets)
+    3. weaknesses (3 bullets)
+    4. concrete_improvements (3 bullets)
     """
 
     for i in range(3):
