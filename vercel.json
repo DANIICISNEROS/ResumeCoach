@@ -1,12 +1,24 @@
 {
   "services": {
     "frontend": {
-      "source": "frontend",
-      "framework": "nextjs"
+      "root": "frontend"
     },
     "ia": {
-      "source": "IA",
-      "framework": "fastapi"
+      "root": "IA"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "ia"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
 }
