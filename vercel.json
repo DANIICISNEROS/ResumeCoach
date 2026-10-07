@@ -4,7 +4,9 @@
       "root": "frontend"
     },
     "ia": {
-      "root": "IA"
+      "root": "IA",
+      "framework": "fastapi",
+      "entrypoint": "main:app"
     }
   },
   "rewrites": [
