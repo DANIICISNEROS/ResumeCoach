@@ -3,8 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function POST(req: NextRequest) {
   const formData = await req.formData()
 
-  // Le pegamos a tu backend FastAPI local
-  const backendRes = await fetch('http://127.0.0.1:8000/upload-cv/', {
+  const backendRes = await fetch(`${req.nextUrl.origin}/api/upload-cv/`, {
     method: 'POST',
     body: formData,
   })
