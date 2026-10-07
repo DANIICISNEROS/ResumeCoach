@@ -1,14 +1,12 @@
 {
-  "buildCommand": "cd frontend && npm install && npm run build",
-  "outputDirectory": "frontend/.next",
-  "installCommand": "pip install -r IA/requirements.txt",
-  "functions": {
-    "IA/main.py": {
-      "runtime": "@vercel/python@3.9.18"
+  "services": {
+    "frontend": {
+      "source": "frontend",
+      "framework": "nextjs"
+    },
+    "ia": {
+      "source": "IA",
+      "framework": "fastapi"
     }
-  },
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/IA/main.py" },
-    { "source": "/(.*)", "destination": "/frontend/$1" }
-  ]
+  }
 }
